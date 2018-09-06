@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".AddActivity">
+
+    <EditText
+        android:id="@+id/edtName"
+        android:hint="enter ur name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtAddress"
+        android:hint="enter ur Address"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtPhone"
+        android:layout_marginTop="5dp"
+        android:hint="enter ur Phone"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtSalary"
+        android:layout_marginTop="5dp"
+        android:hint="enter ur Salary"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtDesignation"
+        android:layout_marginTop="5dp"
+        android:hint="enter ur Designation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_marginTop="5dp"
+        android:onClick="addToServer"
+        android:layout_width="120dp"
+        android:text="Add"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
