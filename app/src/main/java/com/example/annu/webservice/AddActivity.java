@@ -25,6 +25,7 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add );
         edtName=findViewById( R.id.edtName );
+//        edtName.setOnClickListener( (View.OnClickListener) this );
         edtAddress=findViewById( R.id.edtAddress );
         edtSalary=findViewById( R.id.edtSalary );
         edtPhone=findViewById( R.id.edtPhone );
@@ -33,7 +34,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void addToServer(View view) {
-        String name=edtName.getText().toString().trim();
+        final String name=edtName.getText().toString().trim();
         String address=edtAddress.getText().toString().trim();
         String phoneNumber=edtPhone.getText().toString().trim();
         String salString=edtSalary.getText().toString().trim();
@@ -51,14 +52,20 @@ public class AddActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
             BaseResponse baseResponse=response.body();
-            Toast.makeText( AddActivity.this,baseResponse.getMessage(),Toast.LENGTH_SHORT ).show();
+            Toast.makeText( AddActivity.this,baseResponse.getMessage(),Toast.LENGTH_SHORT).show();
+            edtName.setText( " " );
+            edtAddress.setText( " " );
+            edtPhone.setText( " " );
+            edtSalary.setText( " " );
+            edtDesignation.setText( " " );
+
+
         }
 
         @Override
         public void onFailure(Call<BaseResponse> call, Throwable t) {
-            Toast.makeText(AddActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
-        }
+            //Toast.makeText(AddActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
     } );
 
     }
