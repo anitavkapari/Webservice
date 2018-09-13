@@ -1,6 +1,9 @@
 package com.example.annu.webservice.model;
 
-public class Employee {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Employee implements Parcelable {
     private int id;
     private  String name;
     private  String address;
@@ -18,6 +21,42 @@ public class Employee {
 
     public Employee() {
     }
+
+    protected Employee(Parcel in) {//read data from parcel
+        id = in.readInt( );
+        name = in.readString( );
+        address = in.readString( );
+        phoneNumber = in.readString( );
+        salary = in.readLong( );
+        designation = in.readString( );
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {//write data to parcel
+        dest.writeInt( id );
+        dest.writeString( name );
+        dest.writeString( address );
+        dest.writeString( phoneNumber );
+        dest.writeLong( salary );
+        dest.writeString( designation );
+    }
+
+    @Override
+    public int describeContents() {//identify the class <employee>
+        return 0;
+    }
+
+    public static final Creator<Employee> CREATOR = new Creator<Employee>( ) {
+        @Override
+        public Employee createFromParcel(Parcel in) {
+            return new Employee( in );
+        }
+
+        @Override
+        public Employee[] newArray(int size) {
+            return new Employee[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -65,5 +104,17 @@ public class Employee {
 
     public void setDesignation(String designation) {
         this.designation = designation;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", salary=" + salary +
+                ", designation='" + designation + '\'' +
+                '}';
     }
 }

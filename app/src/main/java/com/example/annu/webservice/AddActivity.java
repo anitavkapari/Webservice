@@ -1,11 +1,13 @@
 package com.example.annu.webservice;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.annu.webservice.model.BaseResponse;
@@ -19,6 +21,7 @@ import retrofit2.Response;
 
 public class AddActivity extends AppCompatActivity {
     EditText edtName,edtAddress,edtSalary,edtPhone,edtDesignation;
+    ProgressBar progress;
     Button btnAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class AddActivity extends AppCompatActivity {
         edtPhone=findViewById( R.id.edtPhone );
         edtDesignation=findViewById( R.id.edtDesignation );
         btnAdd=findViewById( R.id.btnAdd );
+        progress=findViewById( R.id.progress );
+
     }
 
     public void addToServer(View view) {
@@ -48,11 +53,20 @@ public class AddActivity extends AppCompatActivity {
         Employee employee= new Employee(name,address,phoneNumber,salary,designation);
         ApiInterface apiInterface= ApiClient.getClient().create( ApiInterface.class );
         Call<BaseResponse> call=apiInterface.addEmployee( employee );
+        progress.setVisibility( View.VISIBLE );
+       /* final ProgressDialog progressDialog =new  ProgressDialog(this);
+       progressDialog.setCancelable( false );
+       progressDialog.setMessage( " Adding employee" );
+       progressDialog.setProgressStyle( ProgressDialog.STYLE_HORIZONTAL );
+       progressDialog.show();*/
+
+
     call.enqueue( new Callback<BaseResponse>( ) {
         @Override
         public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
             BaseResponse baseResponse=response.body();
             Toast.makeText( AddActivity.this,baseResponse.getMessage(),Toast.LENGTH_SHORT).show();
+            progress.setVisibility(View.GONE);
             edtName.setText( " " );
             edtAddress.setText( " " );
             edtPhone.setText( " " );
@@ -64,8 +78,9 @@ public class AddActivity extends AppCompatActivity {
 
         @Override
         public void onFailure(Call<BaseResponse> call, Throwable t) {
-            //Toast.makeText(AddActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+            Toast.makeText( AddActivity.this, t.getMessage( ), Toast.LENGTH_SHORT ).show( );
+            progress.setVisibility( View.GONE );
+        }
     } );
 
     }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,27 +12,22 @@
         android:hint="Anita"/>
     <TextView
         android:id="@+id/txtAddress"
+        android:layout_below="@+id/txtName"
         android:text="saswad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <TextView
         android:id="@+id/txtPhone"
+        android:layout_below="@+id/txtAddress"
         android:text="46589987"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
-    <TextView
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtSalary"
-        android:text="Salary"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtDesignation"
-        android:text="Designation"
-        />
-</LinearLayout>
+        android:id="@+id/btnDelete"
+        android:src="@drawable/ic_delete_forever_black_24dp"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
